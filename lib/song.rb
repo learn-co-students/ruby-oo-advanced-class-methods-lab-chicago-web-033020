@@ -51,8 +51,8 @@ class Song
     first_split = name.split(" - ")
     artist = first_split[0]
     song_format = first_split[1]
-    split_song_format = song_format.split(".")
-    song = split_song_format[0]
+    #split_song_format = song_format.split(".")
+    song = song_format.split(".")[0]
 
     new_song = Song.new_by_name(song)
     new_song.artist_name = artist
