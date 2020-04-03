@@ -47,15 +47,17 @@ class Song
     Song.all.sort_by { |song| song.name }
   end
 
-  def self.new_from_filename(name)
-    first_split = name.split(" - ")
-    artist = first_split[0]
-    song_format = first_split[1]
-    #split_song_format = song_format.split(".")
-    song = song_format.split(".")[0]
+  def self.song_from_filename(name)
+    name.split(" - ")[1].split(".")[0]
+  end
 
-    new_song = Song.new_by_name(song)
-    new_song.artist_name = artist
+  def self.artist_from_filename(name)
+    name.split(" - ")[0]
+  end
+
+  def self.new_from_filename(name)
+    new_song = Song.new_by_name(Song.song_from_filename(name))
+    new_song.artist_name = Song.artist_from_filename(name)
     new_song
   end
 
@@ -69,7 +71,3 @@ class Song
   end
 
 end
-
-song = Song.new_from_filename("Thundercat - For Love I Come.mp3")
-
-#binding.pry
